@@ -1,33 +1,28 @@
 
 import { Injectable } from '@angular/core';
-import { Task } from './task.model';
-
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import {  todoListApp } from './task.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TodoService {
-  private tasks: Task[] = [];
+  private dbPath = '/todoListApp'; ProdactsRef: AngularFirestoreCollection<todoListApp>;
 
-  addTask(title: string): void {
-    const newTask = new Task(this.tasks.length + 1, title);
-    this.tasks.push(newTask);
+  constructor(private db: AngularFirestore) {
+    this.ProdactsRef = db.collection(this.dbPath);
   }
-
-  removeTask(id: number): void {
-    this.tasks = this.tasks.filter(task => task.id !== id);
+  
+  getAll(): AngularFirestoreCollection<todoListApp> {
+    return this.ProdactsRef;
   }
-
-  editTask(id: number, newTitle: string): void {
-    const taskToEdit = this.tasks.find(task => task.id === id);
-    console.log(taskToEdit)
-    if (taskToEdit) {
-    console.log(taskToEdit)
-
-      taskToEdit.title = newTitle;
-    }
+  update(id: string, data: any): Promise<void> {
+    return this.ProdactsRef.doc(id).update(data);
   }
-
-  getTasks(): Task[] {
-    return this.tasks;
+  delete(id: string): Promise<void> {
+    return this.ProdactsRef.doc(id).delete();
+  }
+  create(prodact: todoListApp): any {
+    return this.ProdactsRef.add({ ...prodact });
   }
 }

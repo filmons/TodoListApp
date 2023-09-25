@@ -1,0 +1,58 @@
+<main>
+    <section id="main-section" class="contact-section section-padding">
+      <button class="add-button" (click)="showForms()">
+        {{ !addButton ? 'Add Task' : 'Close' }}
+      </button>
+      
+      <div class="add-item-container" *ngIf="addButton">
+        <input
+          [(ngModel)]="newItem.title"
+          class="add-task-input"
+          placeholder="Enter task title"
+        />
+        <button class="add-task-button" (click)="addItem()">Add Task</button>
+      </div>
+      
+      <div class="container mt-5 row task-list">
+        <mat-card
+          class="artists-thumb example-card col-md-4"
+          *ngFor="let task of listtask"
+        >
+          <div class="artists-hover">
+            <div class="card-buttons">
+              <button
+                class="btn btn-danger"
+                mat-button
+              >
+                LIKE 
+              </button>
+              <button mat-button (click)="deleteItem(task)">DELETE</button>
+              <button mat-button (click)="toggleEditMode(task)">EDIT</button>
+            </div>
+  
+            <div class="mt-4">
+              <p><strong>{{ task.title }}</strong></p>
+              <input
+                [(ngModel)]="updatedTitle"
+                class="edit-task-input"
+                placeholder="Updated Title"
+                *ngIf="currentTutorial?.id === task.id"
+              />
+            </div>
+            
+            <div class="mb-0">
+              <div class="mt-4" *ngIf="currentTutorial?.id === task.id">
+                <button
+                  class="update-task-button"
+                  (click)="updateTutorial(task, updatedTitle)"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </section>
+  </main>
+  
