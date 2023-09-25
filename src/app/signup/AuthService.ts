@@ -1,12 +1,13 @@
 // import { Injectable } from '@angular/core';
-// // import { AngularFireAuth } from '@angular/fire/auth';
+// import { AngularFireAuth, AuthError, AuthState } from '@angular/fire/auth'; // Updated import
 // import { User } from '../user.model';
+// import { catchError } from 'rxjs/operators'; // Added import for catchError
 
 // @Injectable({
 //   providedIn: 'root',
 // })
 // export class AuthService {
-// //   constructor(private auth: AngularFireAuth) {}
+//   constructor(private auth: AngularFireAuth) {}
 
 //   signUp(user: User): Promise<void> {
 //     return this.auth.createUserWithEmailAndPassword(user.email, user.password);
@@ -20,7 +21,7 @@
 //     return this.auth.signOut();
 //   }
 
-//   getCurrentUser(): any {
+//   getCurrentUser(): AuthState | null { // Updated return type
 //     return this.auth.authState;
 //   }
 // }

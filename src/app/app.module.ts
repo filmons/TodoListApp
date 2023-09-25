@@ -6,7 +6,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from './environment';
-// import { AngularFireAuthModule } from '@angular/fire/auth';
+import {
+  getAnalytics,
+  provideAnalytics,
+  ScreenTrackingService,
+  UserTrackingService
+} from '@angular/fire/analytics';
+
+import { provideFirebaseApp, initializeApp } 
+from '@angular/fire/app';
+import { getAuth, provideAuth } 
+from '@angular/fire/auth';
+import { getFirestore, provideFirestore } 
+from '@angular/fire/firestore';
+import { getStorage, provideStorage } 
+from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +53,9 @@ import { SignupComponent } from './signup/signup.component';
     MatCardModule,
     MatIconModule,
     MatDividerModule,
-    // AngularFireAuthModule
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    provideStorage(() => getStorage())
 
    
 
