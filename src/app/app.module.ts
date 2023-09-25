@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from './environment';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,10 +24,9 @@ import { SignupComponent } from './signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // TaskListComponent,
     TaskComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
 
   ],
   imports: [
@@ -38,7 +38,9 @@ import { SignupComponent } from './signup/signup.component';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    // AngularFireAuthModule
+
    
 
   ],
